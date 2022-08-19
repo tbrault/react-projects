@@ -3,6 +3,7 @@ import Pokemon from "../models/pokemon";
 import "./pokemon-card.css";
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   pokemon: Pokemon;
@@ -13,6 +14,12 @@ const PokemonCard: FunctionComponent<Props> = ({
   pokemon,
   borderColor = "#009688",
 }) => {
+  const navigate = useNavigate();
+
+  const goToPokemon = (id: number) => {
+    navigate(`/pokemons/${id}`);
+  };
+
   const [color, setColor] = useState<string>();
 
   const showBorder = () => {
@@ -28,6 +35,7 @@ const PokemonCard: FunctionComponent<Props> = ({
       className="col s6 m4"
       onMouseEnter={showBorder}
       onMouseLeave={hideBorder}
+      onClick={() => goToPokemon(pokemon.id)}
     >
       <div className="card horizontal" style={{ borderColor: color }}>
         <div className="card-image">
