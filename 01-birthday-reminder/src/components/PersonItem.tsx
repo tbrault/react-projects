@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from "react";
-import Person from "./person";
+import Person from "../models/Person";
 
 type Props = {
   person: Person;
 };
 
 const PersonItem: FunctionComponent<Props> = ({ person }) => {
-  const { id, name, age, image } = person;
+  const { name, age, image } = person;
+
+  console.log(person);
 
   return (
-    <article key={id} className="person">
+    <article className="person">
       <img src={image} alt={name} />
       <div>
         <h4>{name}</h4>

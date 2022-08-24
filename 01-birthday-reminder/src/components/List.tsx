@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import Person from "./person";
+import Person from "../models/Person";
 import PersonItem from "./PersonItem";
 
 type Props = {
@@ -10,7 +10,7 @@ const List: FunctionComponent<Props> = ({ people }) => {
   return (
     <>
       {people.map((person) => {
-        return <PersonItem person={person} />;
+        return <PersonItem key={person.id} person={person} />;
       })}
     </>
   );
