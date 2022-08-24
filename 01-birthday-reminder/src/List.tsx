@@ -1,9 +1,17 @@
 import React, { FunctionComponent } from "react";
+import Person from "./person";
+import PersonItem from "./PersonItem";
 
-const List: FunctionComponent = () => {
+type Props = {
+  people: Person[];
+};
+
+const List: FunctionComponent<Props> = ({ people }) => {
   return (
     <>
-      <h2>list component</h2>
+      {people.map((person) => {
+        return <PersonItem person={person} />;
+      })}
     </>
   );
 };
