@@ -1,10 +1,14 @@
-import React from 'react'
-function App() {
-  return (
-    <div className='container'>
-      <h2>Advanced Tutorial</h2>
-    </div>
-  )
-}
+import React, { FunctionComponent } from "react";
+import Setup from "./tutorial/1-useState/setup/5-useState-counter";
+import Final from "./tutorial/1-useState/final/5-useState-counter";
 
-export default App
+const App: FunctionComponent = () => {
+  return (
+    <div className="container">
+      <Setup />
+      <Final />
+    </div>
+  );
+};
+
+export default App;
