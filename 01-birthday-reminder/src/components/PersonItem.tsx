@@ -8,8 +8,6 @@ type Props = {
 const PersonItem: FunctionComponent<Props> = ({ person }) => {
   const { name, age, image } = person;
 
-  console.log(person);
-
   return (
     <article className="person">
       <img src={image} alt={name} />
