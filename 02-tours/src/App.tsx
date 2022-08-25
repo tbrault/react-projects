@@ -9,8 +9,24 @@ const url = "https://course-api.com/react-tours-project";
 
 const App: FunctionComponent = () => {
   const [tours, setTours] = useState<Tour[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  return <h2>Tours Project Setup</h2>;
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>no tours left</h2>
+          <button className="btn">refresh</button>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <Tours />
+    </main>
+  );
 };
 
 export default App;
