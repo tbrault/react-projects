@@ -9,18 +9,28 @@ const url = "https://course-api.com/react-tours-project";
 
 const App: FunctionComponent = () => {
   const [tours, setTours] = useState<Tour[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getTours = async () => {
-    const response = await fetch(url);
-    const tours = await response.json();
-    setTours(tours);
-    setIsLoading(false);
+  const fetchTours = async () => {
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setTours(tours);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    getTours();
+    fetchTours();
   }, []);
+
+  const removeTour = (id: number) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
+  };
 
   if (isLoading) {
     return (
@@ -35,7 +45,9 @@ const App: FunctionComponent = () => {
       <main>
         <div className="title">
           <h2>no tours left</h2>
-          <button className="btn">refresh</button>
+          <button className="btn" onClick={fetchTours}>
+            refresh
+          </button>
         </div>
       </main>
     );
@@ -43,7 +55,7 @@ const App: FunctionComponent = () => {
 
   return (
     <main>
-      <Tours tours={tours} />
+      <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
 };

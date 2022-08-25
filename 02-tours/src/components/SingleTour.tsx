@@ -2,11 +2,22 @@ import React, { useState, FunctionComponent } from "react";
 import { Tour } from "../types/Tour";
 
 type Props = {
-  tour: Tour;
+  id: number;
+  name: string;
+  image: string;
+  info: string;
+  price: number;
+  removeTour: Function;
 };
 
-const SingleTour: FunctionComponent<Props> = ({ tour }) => {
-  const { name, info, image, price } = tour;
+const SingleTour: FunctionComponent<Props> = ({
+  id,
+  name,
+  info,
+  image,
+  price,
+  removeTour,
+}) => {
   const [readMore, setReadMore] = useState<boolean>(false);
 
   return (
@@ -24,7 +35,9 @@ const SingleTour: FunctionComponent<Props> = ({ tour }) => {
               {readMore ? "Show Less" : "Read More"}
             </button>
           </p>
-          <button className="delete-btn">not interested</button>
+          <button className="delete-btn" onClick={() => removeTour(id)}>
+            not interested
+          </button>
         </footer>
       </article>
     </>

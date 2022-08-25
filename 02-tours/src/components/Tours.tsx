@@ -4,9 +4,10 @@ import SingleTour from "./SingleTour";
 
 type Props = {
   tours: Tour[];
+  removeTour: Function;
 };
 
-const Tours: FunctionComponent<Props> = ({ tours }) => {
+const Tours: FunctionComponent<Props> = ({ tours, removeTour }) => {
   return (
     <section>
       <div className="title">
@@ -15,7 +16,7 @@ const Tours: FunctionComponent<Props> = ({ tours }) => {
       </div>
       <div>
         {tours.map((tour) => {
-          return <SingleTour key={tour.id} tour={tour} />;
+          return <SingleTour key={tour.id} {...tour} removeTour={removeTour} />;
         })}
       </div>
     </section>
