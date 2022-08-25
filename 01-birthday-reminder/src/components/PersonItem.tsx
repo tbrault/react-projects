@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import Person from "../models/Person";
+import { Person } from "../types/Person";
 
 type Props = {
   person: Person;

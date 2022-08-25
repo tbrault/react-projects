@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
-import data from "./models/data";
+import data from "./data/data";
 import List from "./components/List";
-import Person from "./models/Person";
+import { Person } from "./types/Person";
 
 const App: FunctionComponent = () => {
   const [people, setPeople] = useState<Person[]>(data);
