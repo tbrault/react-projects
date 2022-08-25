@@ -11,6 +11,25 @@ const App: FunctionComponent = () => {
   const [tours, setTours] = useState<Tour[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const getTours = async () => {
+    const response = await fetch(url);
+    const tours = await response.json();
+    setTours(tours);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getTours();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
+
   if (tours.length === 0) {
     return (
       <main>
@@ -24,7 +43,7 @@ const App: FunctionComponent = () => {
 
   return (
     <main>
-      <Tours />
+      <Tours tours={tours} />
     </main>
   );
 };
