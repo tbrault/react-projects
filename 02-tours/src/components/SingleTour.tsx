@@ -1,5 +1,4 @@
 import React, { useState, FunctionComponent } from "react";
-import { Tour } from "../types/Tour";
 
 type Props = {
   id: number;
