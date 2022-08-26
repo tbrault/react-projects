@@ -29,6 +29,15 @@ const Review: FunctionComponent = () => {
     }
   };
 
+  const getRandomIndex = () => {
+    return Math.floor(Math.random() * people.length);
+  };
+
+  const getRandomPerson = () => {
+    const index = getRandomIndex();
+    setPerson(people[index]);
+  };
+
   return (
     <article className="review">
       <div className="img-container">
@@ -48,7 +57,9 @@ const Review: FunctionComponent = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn">surprise me</button>
+      <button className="random-btn" onClick={getRandomPerson}>
+        surprise me
+      </button>
     </article>
   );
 };
