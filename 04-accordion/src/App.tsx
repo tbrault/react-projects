@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import data from "./data/data";
 import SingleQuestion from "./components/Question";
-function App() {
-  return <h2>accordion project setup</h2>;
-}
+
+const App: FunctionComponent = () => {
+  return (
+    <main>
+      <section className="container">
+        <h3>questions and answers about login</h3>
+        <div>
+          {data.map((question) => {
+            return <SingleQuestion key={question.id} {...question} />;
+          })}
+        </div>
+      </section>
+    </main>
+  );
+};
 
 export default App;
