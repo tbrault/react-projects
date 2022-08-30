@@ -2,14 +2,23 @@ import React, { FunctionComponent } from "react";
 
 type Props = {
   categories: string[];
+  filterMenu: Function;
 };
 
-const Categories: FunctionComponent<Props> = ({ categories }) => {
+const Categories: FunctionComponent<Props> = ({ categories, filterMenu }) => {
   return (
     <div className="btn-container">
-      <button className="filter-btn">All</button>
       {categories.map((category) => {
-        return <button className="filter-btn">{category}</button>;
+        return (
+          <button
+            type="button"
+            key={category}
+            className="filter-btn"
+            onClick={() => filterMenu(category)}
+          >
+            {category}
+          </button>
+        );
       })}
     </div>
   );

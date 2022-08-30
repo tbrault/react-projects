@@ -3,14 +3,14 @@ import MenuItem from "../types/menuItem";
 import SingleMenuItem from "./SingleMenuItem";
 
 type Props = {
-  items: MenuItem[];
+  menuItems: MenuItem[];
 };
 
-const Menu: FunctionComponent<Props> = ({ items }) => {
+const Menu: FunctionComponent<Props> = ({ menuItems }) => {
   return (
     <section className="section-center">
-      {items.map((item) => {
-        return <SingleMenuItem key={item.id} {...item} />;
+      {menuItems.map((menuItem) => {
+        return <SingleMenuItem key={menuItem.id} {...menuItem} />;
       })}
     </section>
   );
