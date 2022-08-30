@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import Menu from "./components/Menu";
 import Categories from "./components/Categories";
 import items from "./data/data";
 
-function App() {
-  return <h2>menu project setup</h2>;
-}
+const App: FunctionComponent = () => {
+  return (
+    <section className="menu">
+      <div className="title">
+        <h2>our menu</h2>
+        <div className="underline"></div>
+      </div>
+      <Categories />
+      <Menu items={items} />
+    </section>
+  );
+};
 
 export default App;

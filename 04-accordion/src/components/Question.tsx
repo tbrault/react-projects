@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Question: FunctionComponent<Props> = ({ title, info }) => {
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <article className="question">
@@ -17,7 +17,7 @@ const Question: FunctionComponent<Props> = ({ title, info }) => {
           {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
       </header>
-      <p>{showInfo && info}</p>
+      {showInfo && <p>{info}</p>}
     </article>
   );
 };
