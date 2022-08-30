@@ -1,12 +1,16 @@
 import React, { FunctionComponent } from "react";
 
-const Categories: FunctionComponent = () => {
+type Props = {
+  categories: string[];
+};
+
+const Categories: FunctionComponent<Props> = ({ categories }) => {
   return (
     <div className="btn-container">
       <button className="filter-btn">All</button>
-      <button className="filter-btn">breakfast</button>
-      <button className="filter-btn">lunch</button>
-      <button className="filter-btn">shakes</button>
+      {categories.map((category) => {
+        return <button className="filter-btn">{category}</button>;
+      })}
     </div>
   );
 };

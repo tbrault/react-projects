@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import MenuItem from "../types/menuItem";
 
 type Props = {
   title: string;
