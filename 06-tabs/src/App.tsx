@@ -4,7 +4,45 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 // I SWITCHED TO PERMANENT DOMAIN
 const url = "https://course-api.com/react-tabs-project";
 
+type Job = {
+  id: string;
+  order: number;
+  title: string;
+  dates: string;
+  duties: string[];
+  company: string;
+};
+
 const App: FunctionComponent = () => {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [value, setValue] = useState<number>(0);
+
+  const fecthJobs = async () => {
+    try {
+      const res = await fetch(url);
+      const jobs = await res.json();
+      setJobs(jobs);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fecthJobs();
+  }, []);
+
+  if (loading)
+    return (
+      <main>
+        <section className="section">
+          <h1 className="loading">Loading...</h1>
+        </section>
+      </main>
+    );
+
   return (
     <main>
       <section className="section">
@@ -14,9 +52,17 @@ const App: FunctionComponent = () => {
         </div>
         <article className="jobs-center">
           <aside className="btn-container">
-            <button className="job-btn active-btn">tommy</button>
-            <button className="job-btn">bigdrop</button>
-            <button className="job-btn">cuker</button>
+            {jobs.map(({ id, company }, index) => {
+              return (
+                <button
+                  onClick={() => setValue(index)}
+                  key={id}
+                  className={`job-btn ${index === value && "active-btn"}`}
+                >
+                  {company}
+                </button>
+              );
+            })}
           </aside>
           <div className="job-info">
             <h3>test</h3>
