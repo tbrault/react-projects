@@ -18,6 +18,8 @@ const App: FunctionComponent = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [value, setValue] = useState<number>(0);
 
+  const { title, company, duties, dates } = jobs[value];
+
   const fecthJobs = async () => {
     try {
       const res = await fetch(url);
@@ -36,11 +38,9 @@ const App: FunctionComponent = () => {
 
   if (loading)
     return (
-      <main>
-        <section className="section">
-          <h1 className="loading">Loading...</h1>
-        </section>
-      </main>
+      <section className="section loading">
+        <h1>Loading...</h1>
+      </section>
     );
 
   return (
@@ -65,27 +65,17 @@ const App: FunctionComponent = () => {
             })}
           </aside>
           <div className="job-info">
-            <h3>test</h3>
-            <h4>test</h4>
-            <p className="job-date">date</p>
-            <div className="job-desc">
-              <FaAngleDoubleRight className="job-icon" />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Ducimus, eligendi omnis odio maiores ipsum porro ea vel repellat
-                nulla non. Molestiae ullam quaerat autem! Quaerat harum corporis
-                accusantium perferendis fugiat?
-              </p>
-            </div>
-            <div className="job-desc">
-              <FaAngleDoubleRight className="job-icon" />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Ducimus, eligendi omnis odio maiores ipsum porro ea vel repellat
-                nulla non. Molestiae ullam quaerat autem! Quaerat harum corporis
-                accusantium perferendis fugiat?
-              </p>
-            </div>
+            <h3>{title}</h3>
+            <h4>{company}</h4>
+            <p className="job-date">{dates}</p>
+            {duties.map((duty, index) => {
+              return (
+                <div className="job-desc" key={index}>
+                  <FaAngleDoubleRight className="job-icon" />
+                  <p>{duty}</p>
+                </div>
+              );
+            })}
           </div>
         </article>
         <button className="btn">more info</button>
