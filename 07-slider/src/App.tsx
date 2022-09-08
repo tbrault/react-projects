@@ -5,6 +5,7 @@ import data from "./data/data";
 
 const App: FunctionComponent = () => {
   const [reviews, setReviews] = useState(data);
+  console.log("test");
 
   return (
     <section className="section">
