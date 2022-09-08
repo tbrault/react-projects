@@ -4,6 +4,8 @@ import { FaQuoteRight } from "react-icons/fa";
 import data from "./data/data";
 
 const App: FunctionComponent = () => {
+  const [reviews, setReviews] = useState(data);
+
   return (
     <section className="section">
       <div className="title">
