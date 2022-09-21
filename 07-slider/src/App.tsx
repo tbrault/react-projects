@@ -6,6 +6,8 @@ import people from "./data/data";
 const peopleLength = people.length;
 const lastIndex = peopleLength - 1;
 
+console.log("test git");
+
 const App: FunctionComponent = () => {
   const [index, setIndex] = useState<number>(0);
 
