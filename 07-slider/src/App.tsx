@@ -6,18 +6,6 @@ import people from "./data/data";
 const App: FunctionComponent = () => {
   const [index, setIndex] = useState<number>(0);
 
-  const getRandomIndex = () => {
-    return Math.floor(Math.random() * people.length);
-  };
-
-  const getRandomPerson = () => {
-    let randomIndex = getRandomIndex();
-    if (randomIndex === index) {
-      randomIndex++;
-    }
-    setIndex(randomIndex);
-  };
-
   return (
     <section className="section">
       <div className="title">
@@ -26,10 +14,20 @@ const App: FunctionComponent = () => {
         </h2>
       </div>
       <div className="section-center">
-        {people.map((person) => {
+        {people.map((person, personIndex) => {
           const { name, image, title, quote, id } = person;
+          let position = "nextSlide";
+          if (personIndex === index) {
+            position = "activeSlide";
+          }
+          if (
+            personIndex === index - 1 ||
+            (index === 0 && personIndex === people.length - 1)
+          ) {
+            position = "lastSlide";
+          }
           return (
-            <article key={id}>
+            <article key={id} className={position}>
               <img src={image} alt={name} className="person-img" />
               <h4>{name}</h4>
               <p className="title">{title}</p>
@@ -39,10 +37,18 @@ const App: FunctionComponent = () => {
           );
         })}
 
-        <button className="prev" type="button">
+        <button
+          className="prev"
+          type="button"
+          onClick={() => setIndex(index - 1)}
+        >
           <FiChevronLeft />
         </button>
-        <button className="next" type="button">
+        <button
+          className="next"
+          type="button"
+          onClick={() => setIndex(index + 1)}
+        >
           <FiChevronRight />
         </button>
       </div>
