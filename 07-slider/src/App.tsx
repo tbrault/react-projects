@@ -3,8 +3,23 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { FaQuoteRight } from "react-icons/fa";
 import people from "./data/data";
 
+const peopleLength = people.length;
+const lastIndex = peopleLength - 1;
+
 const App: FunctionComponent = () => {
   const [index, setIndex] = useState<number>(0);
+
+  const mod = (idx: number, len: number): number => ((idx % len) + len) % len;
+
+  useEffect(() => {
+    let slider = setInterval(
+      () => setIndex(mod(index + 1, peopleLength)),
+      3000
+    );
+    return () => {
+      clearInterval(slider);
+    };
+  }, [index]);
 
   return (
     <section className="section">
@@ -22,7 +37,7 @@ const App: FunctionComponent = () => {
           }
           if (
             personIndex === index - 1 ||
-            (index === 0 && personIndex === people.length - 1)
+            (index === 0 && personIndex === lastIndex)
           ) {
             position = "lastSlide";
           }
@@ -36,18 +51,17 @@ const App: FunctionComponent = () => {
             </article>
           );
         })}
-
         <button
           className="prev"
           type="button"
-          onClick={() => setIndex(index - 1)}
+          onClick={() => setIndex(mod(index - 1, peopleLength))}
         >
           <FiChevronLeft />
         </button>
         <button
           className="next"
           type="button"
-          onClick={() => setIndex(index + 1)}
+          onClick={() => setIndex(mod(index + 1, peopleLength))}
         >
           <FiChevronRight />
         </button>
