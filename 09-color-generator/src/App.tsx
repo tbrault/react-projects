@@ -4,9 +4,9 @@ import SingleColor from "./components/SingleColor";
 import Values from "values.js";
 
 function App() {
-  const [color, setColor] = useState<string>("#d20000");
+  const [color, setColor] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
-  const [list, setList] = useState<Values[]>([]);
+  const [list, setList] = useState<Values[]>(new Values("#d20000").all(10));
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ function App() {
           <input
             type="text"
             value={color}
-            placeholder="#f2f5f6"
+            placeholder="#d20000"
             onChange={(e) => setColor(e.target.value)}
             className={error ? "error" : ""}
           />
@@ -38,8 +38,10 @@ function App() {
         </form>
       </section>
       <section className="colors">
-        {list.map((color, index) => {
-          return <SingleColor key={index} color={color} index={index} />;
+        {list.map((color, index, list) => {
+          return (
+            <SingleColor key={index} color={color} index={index} list={list} />
+          );
         })}
       </section>
     </>
