@@ -1,7 +1,28 @@
 import React, { useEffect } from "react";
+import AlertMessage from "../interfaces/AlertMessage";
 
-const Alert = (): JSX.Element => {
-  return <p className="alert">alert message</p>;
+type Props = {
+  alert: AlertMessage;
+  setAlert: Function;
+};
+
+const Alert = ({ alert, setAlert }: Props): JSX.Element => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAlert({ ...alert, show: false });
+    }, 3000);
+    return () => clearTimeout(timeout);
+  });
+
+  return (
+    <p
+      className={`${
+        alert.type === "error" ? "alert-danger" : "alert-success"
+      }  alert`}
+    >
+      {alert.message}
+    </p>
+  );
 };
 
 export default Alert;

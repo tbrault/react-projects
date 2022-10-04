@@ -7,7 +7,7 @@ type Props = {
 
 const List = ({ groceryList }: Props): JSX.Element => {
   return (
-    <article className="grocery-container">
+    <>
       {groceryList.map((item, index) => {
         return (
           <div className="grocery-item" key={`${index}-${item}`}>
@@ -19,8 +19,7 @@ const List = ({ groceryList }: Props): JSX.Element => {
           </div>
         );
       })}
-      <button className="clear-btn">clear items</button>
-    </article>
+    </>
   );
 };
 
