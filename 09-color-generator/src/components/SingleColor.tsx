@@ -12,15 +12,17 @@ const SingleColor = ({ color, index, list }: Props): JSX.Element => {
   const hex = color.hexString();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setAlert(false);
-    }, 3000);
-    return () => clearTimeout(timeout);
+    if (alert) {
+      const timeout = setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
   }, [alert]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    await navigator.clipboard.writeText(hex);
     setAlert(true);
-    navigator.clipboard.writeText(hex);
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from "react";
 import SingleColor from "./components/SingleColor";
 
 import Values from "values.js";
+import Input from "./components/Input";
 
 function App() {
   const [color, setColor] = useState<string>("");
@@ -25,13 +26,8 @@ function App() {
       <section className="container">
         <h3>color generator</h3>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={color}
-            placeholder="#d20000"
-            onChange={(e) => setColor(e.target.value)}
-            className={error ? "error" : ""}
-          />
+          <Input type="color" color={color} error={error} setColor={setColor} />
+          <Input type="text" color={color} error={error} setColor={setColor} />
           <button type="submit" className="btn">
             submit
           </button>

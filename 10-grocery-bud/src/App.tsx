@@ -3,7 +3,21 @@ import List from "./components/List";
 import Alert from "./components/Alert";
 
 function App() {
-  return <h2>grocery bud setup</h2>;
+  return (
+    <section className="section-center">
+      <Alert />
+      <form className="grocery-form">
+        <h3>grocery bud</h3>
+        <div className="form-control">
+          <input type="text" placeholder="e.g. egg" className="grocery" />
+          <button type="submit" className="submit-btn">
+            submit
+          </button>
+        </div>
+      </form>
+      <List />
+    </section>
+  );
 }
 
 export default App;
