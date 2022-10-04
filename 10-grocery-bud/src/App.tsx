@@ -30,7 +30,11 @@ function App() {
     }
   };
 
-  console.log(groceryList);
+  const clearGroceryList = () => {
+    setGroceryList([]);
+    setAlert({ show: true, message: "empty list", type: "error" });
+    setItem("");
+  };
 
   return (
     <section className="section-center">
@@ -52,8 +56,14 @@ function App() {
       </form>
       {groceryList.length !== 0 && (
         <article className="grocery-container">
-          <List groceryList={groceryList} />
-          <button className="clear-btn">clear items</button>
+          <List
+            groceryList={groceryList}
+            setGroceryList={setGroceryList}
+            setAlert={setAlert}
+          />
+          <button className="clear-btn" onClick={clearGroceryList}>
+            clear items
+          </button>
         </article>
       )}
     </section>
