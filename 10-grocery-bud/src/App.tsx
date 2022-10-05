@@ -1,7 +1,8 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import List from "./components/List";
 import Alert from "./components/Alert";
 import AlertMessage from "./interfaces/AlertMessage";
+import useLocaleStorage from "./hooks/useLocaleStorage";
 
 function App() {
   const [item, setItem] = useState<string>("");
@@ -12,17 +13,7 @@ function App() {
     message: "",
     type: "",
   });
-  const [groceryList, setGroceryList] = useState<string[]>(() => {
-    const list = localStorage.getItem("list");
-    if (!list) {
-      return [];
-    }
-    return JSON.parse(list);
-  });
-
-  useEffect(() => {
-    localStorage.setItem("list", JSON.stringify(groceryList));
-  }, [groceryList]);
+  const [groceryList, setGroceryList] = useLocaleStorage("list");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
