@@ -6,13 +6,23 @@ import AlertMessage from "./interfaces/AlertMessage";
 function App() {
   const [item, setItem] = useState<string>("");
   const [index, setIndex] = useState<number>(0);
-  const [groceryList, setGroceryList] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [alert, setAlert] = useState<AlertMessage>({
     show: false,
     message: "",
     type: "",
   });
+  const [groceryList, setGroceryList] = useState<string[]>(() => {
+    const list = localStorage.getItem("list");
+    if (!list) {
+      return [];
+    }
+    return JSON.parse(list);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(groceryList));
+  }, [groceryList]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

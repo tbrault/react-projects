@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 type Props = {
