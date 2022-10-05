@@ -5,6 +5,7 @@ import AlertMessage from "./interfaces/AlertMessage";
 
 function App() {
   const [item, setItem] = useState<string>("");
+  const [index, setIndex] = useState<number>(0);
   const [groceryList, setGroceryList] = useState<string[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [alert, setAlert] = useState<AlertMessage>({
@@ -15,7 +16,13 @@ function App() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (item) {
+    if (item && isEdit) {
+      groceryList.splice(index, 1, item);
+      setGroceryList(groceryList);
+      setIsEdit(false);
+      setAlert({ show: true, message: "value changed", type: "success" });
+      setItem("");
+    } else if (item) {
       setGroceryList([...groceryList, item]);
       setItem("");
       setAlert({
@@ -23,8 +30,6 @@ function App() {
         message: "item added to the list",
         type: "success",
       });
-    } else if (item && isEdit) {
-      setAlert({ show: true, message: "value changed", type: "success" });
     } else {
       setAlert({ show: true, message: "please entre value", type: "error" });
     }
@@ -60,6 +65,9 @@ function App() {
             groceryList={groceryList}
             setGroceryList={setGroceryList}
             setAlert={setAlert}
+            setItem={setItem}
+            setIsEdit={setIsEdit}
+            setIndex={setIndex}
           />
           <button className="clear-btn" onClick={clearGroceryList}>
             clear items
