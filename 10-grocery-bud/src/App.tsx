@@ -32,19 +32,19 @@ function App() {
         type: "success",
       });
     } else {
-      setAlert({ show: true, message: "please entre value", type: "error" });
+      setAlert({ show: true, message: "please entre value", type: "danger" });
     }
   };
 
   const clearGroceryList = () => {
     setGroceryList([]);
-    setAlert({ show: true, message: "empty list", type: "error" });
+    setAlert({ show: true, message: "empty list", type: "danger" });
     setItem("");
   };
 
   return (
     <section className="section-center">
-      {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+      {alert.show && <Alert alert={alert} removeAlert={setAlert} />}
       <form className="grocery-form" onSubmit={handleSubmit}>
         <h3>grocery bud</h3>
         <div className="form-control">
