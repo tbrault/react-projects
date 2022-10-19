@@ -1,21 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaBars, FaTwitter } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { links, social } from "../data/data";
 import logo from "../assets/logo.svg";
 
+
 const Navbar = (): JSX.Element => {
+  const [showLinks, setShowLinks] = useState(true);
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
+
+  const handleClick = () => {
+    setShowLinks(!showLinks);
+  };
+
+
+  useEffect(() => {}, [showLinks]);
+
   return (
     <nav>
       <div className="nav-center">
         <header className="nav-header">
           <img src={logo} alt={logo} />
-          <button className="nav-toggle">
+          <button className="nav-toggle" onClick={handleClick}>
             <FaBars />
           </button>
         </header>
 
-        <div className="links-container show-container">
-          <ul className="links">
+        <div className="links-container" ref={linksContainerRef}>
+          <ul className="links" ref={linksRef}>
             {links.map(({ id, text, url }) => {
               return (
                 <li key={id}>
