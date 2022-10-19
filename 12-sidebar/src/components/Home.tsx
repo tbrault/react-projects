@@ -1,7 +1,13 @@
 import React from "react";
+import { FaBars } from "react-icons/fa";
 
 const Home = () => {
-  return <h1>home comp</h1>;
+  return (
+    <main>
+      <FaBars className="sidebar-toggle" />
+      <button className="btn">show modal</button>
+    </main>
+  );
 };
 
 export default Home;
