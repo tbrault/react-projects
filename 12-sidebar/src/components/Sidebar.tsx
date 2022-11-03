@@ -3,12 +3,17 @@ import logo from "../assets/logo.svg";
 import { FaTimes } from "react-icons/fa";
 import { social, links } from "../data/data";
 
-const Sidebar = () => {
+type SidebarProps = {
+  showSidebar: boolean;
+  setShowSidebar: Function;
+};
+
+const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
   return (
-    <aside className="sidebar">
+    <aside className={`${showSidebar && "show-sidebar"} sidebar`}>
       <header className="sidebar-header">
         <img src={logo} alt="code addict" className="logo" />
-        <button className="close-btn">
+        <button className="close-btn" onClick={() => setShowSidebar(false)}>
           <FaTimes />
         </button>
       </header>

@@ -5,11 +5,13 @@ import Home from "./components/Home";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
   return (
     <>
-      <Home setShowModal={setShowModal} />
+      <Home setShowModal={setShowModal} setShowSidebar={setShowSidebar} />
       <Modal showModal={showModal} setShowModal={setShowModal} />
-      <Sidebar />
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
     </>
   );
 }

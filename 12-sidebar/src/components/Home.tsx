@@ -3,12 +3,15 @@ import { FaBars } from "react-icons/fa";
 
 type HomeProps = {
   setShowModal: Function;
+  setShowSidebar: Function;
 };
 
-const Home = ({ setShowModal }: HomeProps) => {
+const Home = ({ setShowModal, setShowSidebar }: HomeProps) => {
   return (
     <main>
-      <FaBars className="sidebar-toggle" />
+      <button onClick={() => setShowSidebar(true)}>
+        <FaBars className="sidebar-toggle" />
+      </button>
       <button className="btn" onClick={() => setShowModal(true)}>
         show modal
       </button>
