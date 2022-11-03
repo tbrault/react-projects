@@ -1,11 +1,17 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
 
-const Home = () => {
+type HomeProps = {
+  setShowModal: Function;
+};
+
+const Home = ({ setShowModal }: HomeProps) => {
   return (
     <main>
       <FaBars className="sidebar-toggle" />
-      <button className="btn">show modal</button>
+      <button className="btn" onClick={() => setShowModal(true)}>
+        show modal
+      </button>
     </main>
   );
 };
