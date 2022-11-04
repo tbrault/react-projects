@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaBars } from "react-icons/fa";
+import { AppContext } from "../context/context";
+import { AppContextInterface } from "../interface/AppContextInterface";
 
-type HomeProps = {
-  setShowModal: Function;
-  setShowSidebar: Function;
-};
+const Home = () => {
+  const { openModal, openSidebar } = useContext(
+    AppContext
+  ) as AppContextInterface;
 
-const Home = ({ setShowModal, setShowSidebar }: HomeProps) => {
   return (
     <main>
-      <button onClick={() => setShowSidebar(true)}>
-        <FaBars className="sidebar-toggle" />
-      </button>
-      <button className="btn" onClick={() => setShowModal(true)}>
+      <FaBars className="sidebar-toggle" onClick={() => openSidebar()} />
+      <button className="btn" onClick={() => openModal()}>
         show modal
       </button>
     </main>

@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.svg";
 import { FaTimes } from "react-icons/fa";
 import { social, links } from "../data/data";
+import { AppContext } from "../context/context";
+import { AppContextInterface } from "../interface/AppContextInterface";
 
-type SidebarProps = {
-  showSidebar: boolean;
-  setShowSidebar: Function;
-};
+const Sidebar = () => {
+  const { showSidebar, closeSidebar } = useContext(
+    AppContext
+  ) as AppContextInterface;
 
-const Sidebar = ({ showSidebar, setShowSidebar }: SidebarProps) => {
   return (
     <aside className={`${showSidebar && "show-sidebar"} sidebar`}>
       <header className="sidebar-header">
         <img src={logo} alt="code addict" className="logo" />
-        <button className="close-btn" onClick={() => setShowSidebar(false)}>
+        <button className="close-btn" onClick={() => closeSidebar()}>
           <FaTimes />
         </button>
       </header>
