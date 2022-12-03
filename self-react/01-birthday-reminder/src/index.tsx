@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./css/index.css";
-import App from "../../01-birthday-reminder/src/App";
+import App from "./App";
 
 // ReactDOM.render(
 //   <React.StrictMode>
