@@ -1,32 +1,49 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postAdded } from "./postsSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const AddPostForm = () => {
-  const [postTitle, setPostTitle] = useState("");
-  const [postContent, setPostContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const dispatch = useDispatch();
+
+  console.log("render");
 
   const onSubmitPostForm = (e) => {
     e.preventDefault();
-    console.log("hello");
+    if (title && content) {
+      dispatch(
+        postAdded({
+          id: nanoid(),
+          title,
+          content,
+        })
+      );
+      setTitle("");
+      setContent("");
+    }
   };
 
   return (
     <section>
       <h2>Add a new post</h2>
       <form onSubmit={(e) => onSubmitPostForm(e)}>
-        <label htmlFor="postTitle">Post Title:</label>
+        <label htmlFor="title">Post Title:</label>
         <input
           placeholder="What's on your mind ?"
-          id="postTitle"
-          name="postTitle"
-          value={postTitle}
-          onChange={(e) => setPostTitle(e.target.value)}
+          id="title"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <label htmlFor="postContent">Content:</label>
+        <label htmlFor="content">Content:</label>
         <textarea
-          id="postTitle"
-          name="postContent"
-          value={postContent}
-          onChange={(e) => setPostContent(e.target.value)}
+          id="title"
+          name="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <button type="submit">Save Post</button>
       </form>
