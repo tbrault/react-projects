@@ -3,12 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom'
 
 import { Navbar } from './app/Navbar'
-
-import { PostsList } from './features/posts/PostsList'
 
 function App() {
   return (

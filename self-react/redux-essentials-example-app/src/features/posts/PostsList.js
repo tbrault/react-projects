@@ -1,14 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-const initialState = [
-  { id: '1', title: 'First Post!', content: 'Hello!' },
-  { id: '2', title: 'Second Post', content: 'More text' }
-]
+export const PostsList = () => {
+  const posts = useSelector(state => state.posts)
 
-const postsSlice = createSlice({
-  name: 'posts',
-  initialState,
-  reducers: {}
-})
+  const renderedPosts = posts.map(post => (
+    <article className="post-excerpt" key={post.id}>
+      <h3>{post.title}</h3>
+      <p className="post-content">{post.content.substring(0, 100)}</p>
+    </article>
+  ))
 
-export default postsSlice.reducer
+  return (
+    <section className="posts-list">
+      <h2>Posts</h2>
+      {renderedPosts}
+    </section>
+  )
+}
