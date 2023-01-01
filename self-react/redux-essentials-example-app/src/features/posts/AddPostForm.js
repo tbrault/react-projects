@@ -1,28 +1,26 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { postAdded } from "./postsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 
 export const AddPostForm = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const titleRef = useRef();
+  const contentRef = useRef();
 
   const dispatch = useDispatch();
 
-  console.log("render");
-
   const onSubmitPostForm = (e) => {
     e.preventDefault();
-    if (title && content) {
+    if (titleRef.current && contentRef.current) {
       dispatch(
         postAdded({
           id: nanoid(),
-          title,
-          content,
+          title: titleRef.current.value,
+          content: contentRef.current.value,
         })
       );
-      setTitle("");
-      setContent("");
+      titleRef.current.value = "";
+      contentRef.current.value = "";
     }
   };
 
@@ -35,16 +33,10 @@ export const AddPostForm = () => {
           placeholder="What's on your mind ?"
           id="title"
           name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          ref={titleRef}
         />
         <label htmlFor="content">Content:</label>
-        <textarea
-          id="title"
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
+        <textarea id="title" name="content" ref={contentRef}></textarea>
         <button type="submit">Save Post</button>
       </form>
     </section>
