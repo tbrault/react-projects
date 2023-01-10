@@ -1,17 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import "./App.css";
 import List from "./components/Lists";
 import Search from "./components/Search";
 import websites from "./data/data";
+import { useLocaleStorage } from "./hooks/useLocaleStorage";
 
 function App(): JSX.Element {
-  const [searchTerm, setSearchTerm] = useState(
-    localStorage.getItem("search") || "React"
+  const [searchTerm, setSearchTerm] = useLocaleStorage<string>(
+    "Search",
+    "React"
   );
-
-  useEffect(() => {
-    localStorage.setItem("search", searchTerm);
-  }, [searchTerm]);
 
   const websitesFiltered = websites.filter((website) =>
     website.websiteCharacteristic.title.toLowerCase().includes(searchTerm)
