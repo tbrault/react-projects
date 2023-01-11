@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../features/Navbar/Navbar";
+import styles from "./App.module.css";
 
 function App(): JSX.Element {
   return (
@@ -10,7 +11,11 @@ function App(): JSX.Element {
           <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-              isActive ? "active" : isPending ? "pending" : ""
+              isActive
+                ? `${styles.active}`
+                : isPending
+                ? `${styles.pending}`
+                : ""
             }
           >
             Home
@@ -19,7 +24,7 @@ function App(): JSX.Element {
         <li>
           <NavLink
             to="/about"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            className={({ isActive }) => (isActive ? `${styles.active}` : "")}
           >
             About
           </NavLink>
