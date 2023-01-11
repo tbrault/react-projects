@@ -7,9 +7,11 @@ function Error(): JSX.Element {
     <section className="section">
       <div className={styles.errorContainer}>
         <h1> oops! it's a dead end</h1>
-        <Button path="/" buttonStyles={["btn", "btnPrimary"]}>
-          back home
-        </Button>
+        <Button
+          name="back home"
+          path="/"
+          buttonStyles={["btn", "btnPrimary"]}
+        />
       </div>
     </section>
   );
