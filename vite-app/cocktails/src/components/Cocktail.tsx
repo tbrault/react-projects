@@ -1,3 +1,7 @@
-export function Cocktail(): JSX.Element {
-  return <div>Cocktail comp</div>;
+import React from "react";
+
+function Cocktail(): JSX.Element {
+  return <div>Cocktail</div>;
 }
+
+export default Cocktail;
