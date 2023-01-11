@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { CocktailsContext } from "../context/cocktailsContext";
+import { AppContext } from "../context/AppContext";
 
 function Cocktails(): JSX.Element {
-  const cocktails = useContext(CocktailsContext);
+  const { cocktails } = useContext(AppContext);
   return <div>Cocktails</div>;
 }
 
