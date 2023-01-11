@@ -68,11 +68,6 @@ img {
   width: 100%;
   display: block;
 }
-/* 
-====== 
-Cocktails List 
-======
-*/
 
 .section {
   padding: 5rem 0;
@@ -85,6 +80,11 @@ Cocktails List
   margin-bottom: 3.5rem;
   margin-top: 1rem;
 }
+/* 
+====== 
+Cocktails List 
+======
+*/
 .cocktails-center {
   width: var(--smallWidth);
   margin: 0 auto;

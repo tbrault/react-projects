@@ -6,7 +6,7 @@ import App from "./App/App";
 import Home from "./pages/Home";
 import Error from "./pages/Error/Error";
 import About from "./pages/About/About";
-import SingleCocktail from "./pages/SingleCocktail";
+import CocktailDetails from "./pages/CocktailDetails";
 import "./style/index.css";
 
 const router = createBrowserRouter([
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cocktails/:cocktailID",
-        element: <SingleCocktail />,
+        element: <CocktailDetails />,
       },
     ],
   },
