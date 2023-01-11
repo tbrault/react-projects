@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../features/Navbar/Navbar";
 
 function App(): JSX.Element {
   return (

@@ -1,0 +1,52 @@
+.btn,
+.btnWhite,
+.btnPrimary {
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  color: var(--primaryColor);
+  border: 2px solid var(--primaryColor);
+  padding: 0.45rem 0.8rem;
+  display: inline-block;
+  transition: var(--mainTransition);
+  cursor: pointer;
+  font-size: 0.8rem;
+  background: transparent;
+  border-radius: var(--mainBorderRadius);
+  display: inline-block;
+}
+.btn:hover {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+}
+.btnWhite {
+  background: transparent;
+  color: var(--mainWhite);
+  border-color: var(--mainWhite);
+}
+.btnWhite:hover {
+  background: var(--mainWhite);
+  color: var(--primaryColor);
+}
+.btnPrimary {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+  border-color: transparent;
+}
+.btnPrimary:hover {
+  background: var(--primaryLightColor);
+  color: var(--primaryColor);
+}
+.btnBlock {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: var(--lightShadow);
+  text-align: center;
+}
+.btnDetails {
+  padding: 0.25rem 0.4rem;
+}
+.btnDetails:hover {
+  background: var(--primaryLightColor);
+  border-color: var(--primaryLightColor);
+}

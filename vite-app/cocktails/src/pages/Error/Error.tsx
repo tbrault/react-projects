@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
 import styles from "./Error.module.css";
 
 function Error(): JSX.Element {
@@ -7,9 +7,9 @@ function Error(): JSX.Element {
     <section className="section">
       <div className={styles.errorContainer}>
         <h1> oops! it's a dead end</h1>
-        <Link to="/" className="btn btn-primary">
+        <Button path="/" buttonStyles={["btn", "btnPrimary"]}>
           back home
-        </Link>
+        </Button>
       </div>
     </section>
   );
