@@ -1,15 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
-function Navbar(): JSX.Element {
+function Navbar({ children }: { children: ReactNode }): JSX.Element {
   return (
     <nav className="navbar">
       <div className="nav-center">
-        <img className="logo" src={logo} alt={logo} />
-        <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-        </div>
+        <NavLink to="/">
+          <img className="logo" src={logo} alt="cocktail logo" />
+        </NavLink>
+        <ul className="nav-links">{children}</ul>
       </div>
     </nav>
   );
