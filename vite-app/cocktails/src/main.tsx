@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import App from "./App";
+import App from "./App/App";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
-import About from "./pages/About";
+import About from "./pages/About/About";
 import SingleCocktail from "./pages/SingleCocktail";
 import "./style/index.css";
 

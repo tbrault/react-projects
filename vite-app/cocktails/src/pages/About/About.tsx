@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./About.module.css";
 
 function About(): JSX.Element {
   return (
-    <section className="section about-section">
+    <section className={styles.aboutSection}>
       <h1 className="section-title">about us</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga
