@@ -8,6 +8,7 @@ import Error from "./pages/Error/Error";
 import About from "./pages/About/About";
 import CocktailDetails from "./pages/CocktailDetails";
 import "./style/index.css";
+import { AppProvider } from "./context/AppContext";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   </React.StrictMode>
 );
