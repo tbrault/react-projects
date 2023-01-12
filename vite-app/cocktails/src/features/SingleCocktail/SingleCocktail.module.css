@@ -16,18 +16,18 @@
   border-top-left-radius: var(--mainBorderRadius);
   border-top-right-radius: var(--mainBorderRadius);
 }
-.cocktail-footer {
+.cocktailFooter {
   padding: 1.5rem;
 }
-.cocktail-footer h3,
-.cocktail-footer h4,
-.cocktail-footer p {
+.cocktailFooter h3,
+.cocktailFooter h4,
+.cocktailFooter p {
   margin-bottom: 0.3rem;
 }
-.cocktail-footer h3 {
+.cocktailFooter h3 {
   font-size: 2rem;
 }
-.cocktail-footer p {
+.cocktailFooter p {
   color: var(--darkGrey);
   margin-bottom: 0.5rem;
 }
