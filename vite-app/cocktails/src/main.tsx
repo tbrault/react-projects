@@ -6,7 +6,7 @@ import App from "./App/App";
 import Home from "./pages/Home";
 import Error from "./pages/Error/Error";
 import About from "./pages/About/About";
-import CocktailDetails from "./pages/CocktailDetails";
+import CocktailDetails from "./pages/CocktailDetails/CocktailDetails";
 import "./style/index.css";
 import { AppProvider } from "./context/AppContext";
 
