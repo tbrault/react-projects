@@ -1,12 +1,15 @@
-import React from "react";
+import { Suspense } from "react";
 import Cocktails from "../features/Cocktails/Cocktails";
+import Loading from "../features/Loading/Loading";
 import SearchBar from "../features/SearchBar/SearchBar";
 
 function Home(): JSX.Element {
   return (
     <>
       <SearchBar />
-      <Cocktails />
+      <Suspense fallback={<Loading />}>
+        <Cocktails />
+      </Suspense>
     </>
   );
 }

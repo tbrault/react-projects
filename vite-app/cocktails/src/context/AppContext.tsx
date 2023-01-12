@@ -23,18 +23,22 @@ function AppProvider({ children }: { children: ReactNode }): JSX.Element {
     try {
       const response = await fetch(`${url}${searchQuery}`);
       const { drinks } = await response.json();
-      const newCocktails = drinks.map((drink: any) => {
-        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
-          drink;
-        return {
-          id: idDrink,
-          name: strDrink,
-          image: strDrinkThumb,
-          info: strAlcoholic,
-          glass: strGlass,
-        };
-      });
-      return newCocktails;
+      if (drinks) {
+        const newCocktails = drinks.map((drink: any) => {
+          const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
+            drink;
+          return {
+            id: idDrink,
+            name: strDrink,
+            image: strDrinkThumb,
+            info: strAlcoholic,
+            glass: strGlass,
+          };
+        });
+        return newCocktails;
+      } else {
+        return [];
+      }
     } catch (error) {
       console.log(error);
     }

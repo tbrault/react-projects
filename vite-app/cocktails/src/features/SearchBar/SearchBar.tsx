@@ -17,7 +17,7 @@ function SearchBar(): JSX.Element {
   }
 
   return (
-    <section className={`section ${styles.search}`}>
+    <section className={styles.search}>
       <form className={styles.searchForm}>
         <div className={styles.formControl}>
           <label htmlFor="search">search your favorite cocktail</label>
