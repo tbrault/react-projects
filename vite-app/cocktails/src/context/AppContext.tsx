@@ -17,7 +17,18 @@ function AppProvider({ children }: { children: ReactNode }): JSX.Element {
     try {
       const response = await fetch(url);
       const { drinks } = await response.json();
-      return drinks;
+      const newCocktails = drinks.map((drink: any) => {
+        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
+          drink;
+        return {
+          id: idDrink,
+          name: strDrink,
+          image: strDrinkThumb,
+          info: strAlcoholic,
+          glass: strGlass,
+        };
+      });
+      return newCocktails;
     } catch (error) {
       console.log(error);
     }

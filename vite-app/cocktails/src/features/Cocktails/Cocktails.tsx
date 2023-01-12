@@ -10,7 +10,7 @@ function Cocktails(): JSX.Element {
       <h1 className="section-title">cocktails</h1>
       <div className={styles.cocktailsCenter}>
         {cocktails.map((cocktail) => {
-          return <Cocktail />;
+          return <Cocktail key={cocktail.id} {...cocktail} />;
         })}
       </div>
     </section>
