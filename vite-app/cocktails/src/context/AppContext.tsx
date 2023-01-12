@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import AppContextType from "../interface/AppContextType";
 import Cocktail from "../interface/cocktail";
 
@@ -10,12 +16,12 @@ const AppContext = createContext<AppContextType>({
 });
 
 function AppProvider({ children }: { children: ReactNode }): JSX.Element {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("a");
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
 
-  async function fetchCocktails() {
+  const fetchCocktails = useCallback(async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(`${url}${searchQuery}`);
       const { drinks } = await response.json();
       const newCocktails = drinks.map((drink: any) => {
         const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
@@ -32,7 +38,7 @@ function AppProvider({ children }: { children: ReactNode }): JSX.Element {
     } catch (error) {
       console.log(error);
     }
-  }
+  }, [searchQuery]);
 
   useEffect(() => {
     let ignore = false;
@@ -44,7 +50,7 @@ function AppProvider({ children }: { children: ReactNode }): JSX.Element {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [fetchCocktails]);
 
   return (
     <AppContext.Provider value={{ cocktails, setSearchQuery }}>
