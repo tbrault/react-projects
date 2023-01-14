@@ -1,4 +1,4 @@
-import Cocktail from "./cocktail";
+import Cocktail from "./Cocktail";
 
 interface AppContextType {
   cocktails: Cocktail[];

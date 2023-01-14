@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import AppContextType from "../interface/AppContextType";
-import Cocktail from "../interface/cocktail";
+import Cocktail from "../interface/Cocktail";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../components/Button/Button";
-import Cocktail from "../../interface/cocktail";
+import Cocktail from "../../interface/Cocktail";
 import styles from "./SingleCocktail.module.css";
 
 function SingleCocktail({
@@ -19,7 +19,7 @@ function SingleCocktail({
         <p>{info}</p>
         <Button
           name="details"
-          path={`/cocktails/:${id}`}
+          path={`/cocktails/${id}`}
           buttonStyles={["btn", "btnPrimary"]}
         />
       </footer>
