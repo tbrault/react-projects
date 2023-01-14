@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+
 import Navbar from "../features/Navbar/Navbar";
 import styles from "./App.module.css";
 

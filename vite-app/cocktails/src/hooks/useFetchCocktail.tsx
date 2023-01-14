@@ -11,46 +11,54 @@ function useFetchCocktails(url: string, urlParam: string) {
       try {
         const response = await fetch(`${url}${urlParam}`);
         const { drinks } = await response.json();
-        if (!ignore && drinks) {
-          const newData = drinks.map((drink: any) => {
-            const {
-              idDrink,
-              strDrink,
-              strDrinkThumb,
-              strAlcoholic,
-              strCategory,
-              strGlass,
-              strInstructions,
-              strIngredient1,
-              strIngredient2,
-              strIngredient3,
-              strIngredient4,
-              strIngredient5,
-            } = drink;
-            return {
-              id: idDrink,
-              name: strDrink,
-              image: strDrinkThumb,
-              info: strAlcoholic,
-              category: strCategory,
-              glass: strGlass,
-              instructions: strInstructions,
-              ingredients: [
-                strIngredient1,
-                strIngredient2,
-                strIngredient3,
-                strIngredient4,
-                strIngredient5,
-              ],
-            };
-          });
-          setData(newData);
-        } else {
-          setData([]);
-        }
+        updateData(drinks);
       } catch (error) {
         console.log(error);
       }
+    }
+
+    function updateData(drinks: any) {
+      if (!ignore && drinks) {
+        const newData = getData(drinks);
+        setData(newData);
+      } else {
+        setData([]);
+      }
+    }
+
+    function getData(data: any): Cocktail[] {
+      return data.map((drink: any) => {
+        const {
+          idDrink,
+          strDrink,
+          strDrinkThumb,
+          strAlcoholic,
+          strCategory,
+          strGlass,
+          strInstructions,
+          strIngredient1,
+          strIngredient2,
+          strIngredient3,
+          strIngredient4,
+          strIngredient5,
+        } = drink;
+        return {
+          id: idDrink,
+          name: strDrink,
+          image: strDrinkThumb,
+          info: strAlcoholic,
+          category: strCategory,
+          glass: strGlass,
+          instructions: strInstructions,
+          ingredients: [
+            strIngredient1,
+            strIngredient2,
+            strIngredient3,
+            strIngredient4,
+            strIngredient5,
+          ],
+        };
+      });
     }
 
     fetchData();

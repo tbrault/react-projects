@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../../components/Button/Button";
 import Cocktail from "../../interface/Cocktail";
 import styles from "./SingleCocktail.module.css";
