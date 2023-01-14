@@ -128,7 +128,7 @@ function SingleCocktail(): JSX.Element {
     );
   }
 
-  return <>{cocktail ? renderCocktail() : renderNoCocktail()}</>;
+  return <>{cocktail.id === 0 ? renderNoCocktail() : renderCocktail()}</>;
 }
 
 export default SingleCocktail;
