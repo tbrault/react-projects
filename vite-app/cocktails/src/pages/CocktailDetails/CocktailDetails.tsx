@@ -1,80 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import Cocktail from "../../interface/Cocktail";
+import useFetchCocktails from "../../hooks/useFetchCocktail";
 import styles from "./CocktailDetails.module.css";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
-const initialValue = {
-  id: 0,
-  category: "",
-  name: "",
-  info: "",
-  glass: "",
-  image: "",
-  instructions: "",
-  ingredients: [""],
-};
 
-function SingleCocktail(): JSX.Element {
+function CocktailDetails(): JSX.Element {
   const { cocktailID } = useParams();
-  const [cocktail, setCocktail] = useState<Cocktail>(initialValue);
-
-  const fetchCocktail = useCallback(async () => {
-    try {
-      const response = await fetch(`${url}${cocktailID}`);
-      const { drinks } = await response.json();
-      if (drinks) {
-        const {
-          idDrink,
-          strDrink,
-          strDrinkThumb,
-          strAlcoholic,
-          strCategory,
-          strGlass,
-          strInstructions,
-          strIngredient1,
-          strIngredient2,
-          strIngredient3,
-          strIngredient4,
-          strIngredient5,
-        } = drinks[0];
-        const newCocktail: Cocktail = {
-          id: idDrink,
-          name: strDrink,
-          image: strDrinkThumb,
-          info: strAlcoholic,
-          category: strCategory,
-          glass: strGlass,
-          instructions: strInstructions,
-          ingredients: [
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
-            strIngredient5,
-          ],
-        };
-        return newCocktail;
-      } else {
-        return initialValue;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [cocktailID]);
-
-  useEffect(() => {
-    let ignore = false;
-    fetchCocktail().then((result) => {
-      if (!ignore && result) {
-        setCocktail(result);
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [fetchCocktail]);
+  const cocktail = useFetchCocktails(url, cocktailID as string)[0];
 
   function renderNoCocktail() {
     return <h2 className="section-title">no cocktail to display</h2>;
@@ -128,7 +61,7 @@ function SingleCocktail(): JSX.Element {
     );
   }
 
-  return <>{cocktail.id === 0 ? renderNoCocktail() : renderCocktail()}</>;
+  return <>{cocktail ? renderCocktail() : renderNoCocktail()}</>;
 }
 
-export default SingleCocktail;
+export default CocktailDetails;

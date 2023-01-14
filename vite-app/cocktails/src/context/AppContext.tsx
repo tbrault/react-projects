@@ -1,12 +1,6 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useState } from "react";
+import useFetchCocktails from "../hooks/useFetchCocktail";
 import AppContextType from "../interface/AppContextType";
-import Cocktail from "../interface/Cocktail";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
@@ -17,44 +11,7 @@ const AppContext = createContext<AppContextType>({
 
 function AppProvider({ children }: { children: ReactNode }): JSX.Element {
   const [searchQuery, setSearchQuery] = useState<string>("a");
-  const [cocktails, setCocktails] = useState<Cocktail[]>([]);
-
-  const fetchCocktails = useCallback(async () => {
-    try {
-      const response = await fetch(`${url}${searchQuery}`);
-      const { drinks } = await response.json();
-      if (drinks) {
-        const newCocktails = drinks.map((drink: any) => {
-          const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
-            drink;
-          return {
-            id: idDrink,
-            name: strDrink,
-            image: strDrinkThumb,
-            info: strAlcoholic,
-            glass: strGlass,
-          };
-        });
-        return newCocktails;
-      } else {
-        return [];
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [searchQuery]);
-
-  useEffect(() => {
-    let ignore = false;
-    fetchCocktails().then((result) => {
-      if (!ignore) {
-        setCocktails([...result]);
-      }
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [fetchCocktails]);
+  const cocktails = useFetchCocktails(url, searchQuery);
 
   return (
     <AppContext.Provider value={{ cocktails, setSearchQuery }}>
