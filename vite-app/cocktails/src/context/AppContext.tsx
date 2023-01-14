@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
-import useFetchCocktails from "../hooks/useFetchCocktail";
+import useFetchCocktails from "../hooks/useFetchCocktails";
 import AppContextType from "../interface/AppContextType";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";

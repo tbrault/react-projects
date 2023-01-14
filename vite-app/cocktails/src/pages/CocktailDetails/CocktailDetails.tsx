@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
-import useFetchCocktails from "../../hooks/useFetchCocktail";
+import useFetchCocktails from "../../hooks/useFetchCocktails";
 import styles from "./CocktailDetails.module.css";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
